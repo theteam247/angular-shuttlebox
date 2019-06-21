@@ -1,0 +1,59 @@
+<br>
+<div *ngIf="placeholder">
+  <span class="placeholder">{{placeholder}}</span>
+</div>
+<mat-error>{{ error }}</mat-error>
+<br *ngIf="!error">
+<div fxLayout="row" fxLayoutAlign="space-between start">
+  <div *ngIf="!disabled" fxFlex="320px" fxLayout="column">
+    <mat-form-field *ngIf="searchable" floatLabel="always">
+      <mat-label>Available Options</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput placeholder="Search" (keyup)="availableSearch = $event.target.value">
+    </mat-form-field>
+    <div fxLayout="column" class="options">
+      <div
+        *ngFor="let item of availableOptions"
+        class="option"
+        [class.selectable]="optionSelectable(item)"
+        [class.selected]="currentAvailableOptions.includes(item)"
+        (click)="availableClick(item)"
+        (dblclick)="selectCurrent([item])">
+        {{item.label}}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!disabled" fxLayout="column" fxLayoutAlign="center center" class="console" [class.selectable]="!disabled && selectable">
+    <button type="button" mat-icon-button (click)="selectAll()">
+      <mat-icon>fast_forward</mat-icon>
+    </button>
+    <button type="button" mat-icon-button (click)="selectCurrent()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <button type="button" mat-icon-button (click)="unselectCurrent()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button type="button" mat-icon-button (click)="unselectAll()">
+      <mat-icon>fast_rewind</mat-icon>
+    </button>
+  </div>
+  <div fxFlex="320px" fxLayout="column">
+    <mat-form-field *ngIf="!disabled && searchable" floatLabel="always">
+      <mat-label>Selected Options</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput placeholder="Search" (keyup)="selectedSearch = $event.target.value">
+    </mat-form-field>
+    <div fxLayout="column" class="options">
+      <div
+        *ngFor="let item of selectedOptions"
+        class="option"
+        [class.selectable]="optionSelectable(item)"
+        [class.selected]="currentSelectedOptions.includes(item)"
+        [ngStyle]="rowStyle(item.value)"
+        (click)="selectedClick(item)"
+        (dblclick)="unselectCurrent([item])">
+        {{item.label}}
+      </div>
+    </div>
+  </div>
+</div>

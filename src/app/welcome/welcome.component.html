@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1 class="headline">
+      Welcome to {{ title }}!
+    </h1>
+    <form [formGroup]="form">
+      <app-shuttle-select
+        placeholder="Fruits"
+        [options]="fruitOptions"
+        formControlName="fruits"
+      >
+      </app-shuttle-select>
+    </form>
+
+    <br>
+
+    <p fxFlexAlign="start" class="mat-title">Result:</p>
+    <pre fxFlexAlign="start">{{ selected }}</pre>
+  </div>
+</div>

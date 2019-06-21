@@ -1,0 +1,66 @@
+:host {
+  &::after {
+    display: none !important;
+  }
+
+  &[required="true"] {
+    .placeholder::after {
+      content: url(/assets/images/required.png);
+      position: absolute;
+      bottom: calc(50% - 8px);
+      right: -8px;
+    }
+  }
+
+  .placeholder {
+    position: relative;
+    font-weight: 600;
+    color: #696969;
+  }
+
+  .console {
+    margin-top: 48px;
+
+    &.selectable {
+      img {
+        cursor: pointer;
+      }
+    }
+  }
+
+  mat-form-field {
+    ::ng-deep .mat-form-field-wrapper {
+      padding: 0;
+
+      .mat-form-field-underline {
+        bottom: 0;
+      }
+    }
+  }
+
+  .options {
+    height: 160px;
+    width: 100%;
+    background: #f2f4f8;
+    overflow: auto;
+    padding: 8px 0;
+    color: #57587d;
+
+    .option {
+      padding: 8px 16px;
+      flex: 0 0 auto;
+    }
+
+    .selectable {
+      cursor: pointer;
+
+      &:hover {
+        background: #ddd;
+      }
+    }
+
+    .selected {
+      background: #ccc !important;
+    }
+  }
+}
